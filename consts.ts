@@ -22,3 +22,6 @@ export const ALERTS_CHANNEL_ID = isDevEnvironment
 export const STARBOARD_CHANNEL_ID = isDevEnvironment
 	? "1476032492010999828"
 	: "1476432714168275026";
+export const CARTRIDGE_EMOJI = isDevEnvironment
+	? "<:cartridge:1477871463410176010>"
+	: "<:cartridge:1370074273586221108>";
