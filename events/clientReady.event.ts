@@ -1,9 +1,12 @@
-import type { Client } from "discord.js";
+import { ChannelType, type Client, type TextChannel } from "discord.js";
 import { findBooleanArg } from "../args";
 import { setupBirthdayIntervals } from "../birthdays";
+import { MICHAN_CHANNEL_ID } from "../consts";
 import { Log } from "../log";
 import { publishRedditPosts } from "../reddit";
 import { registerTempRoleTimeouts } from "../tempRolesHandler";
+
+export let michanChannel: TextChannel;
 
 export default async (client: Client<true>) => {
 	Log.success(`Logged in as ${client.user.tag}!`);
@@ -16,4 +19,11 @@ export default async (client: Client<true>) => {
 		return;
 	}
 	await publishRedditPosts();
+
+	const c = await client.channels.fetch(MICHAN_CHANNEL_ID);
+	if (c === null || c.type !== ChannelType.GuildText) {
+		Log.error("Something is wrong with Mi-chan's channel.");
+		throw new Error("Something is wrong with Mi-chan's channel.");
+	}
+	michanChannel = c;
 };
