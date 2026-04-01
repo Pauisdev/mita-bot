@@ -23,7 +23,12 @@ export default async (message: Message) => {
 			const channel = await message.guild.channels
 				.fetch(originalInfo.channelId)
 				.catch(() => null);
-			if (channel === null || channel.type !== ChannelType.GuildText) return;
+			if (channel === null) return;
+			if (
+				channel.type !== ChannelType.GuildText &&
+				channel.type !== ChannelType.GuildVoice
+			)
+				return;
 			const originalMessage = await channel.messages
 				.fetch(originalInfo.messageId)
 				.catch(() => null);
