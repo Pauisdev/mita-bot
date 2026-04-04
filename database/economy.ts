@@ -13,7 +13,7 @@ async function addMoney(userId: string) {
 		.execute();
 }
 
-async function queryAmount(userId: string) {
+async function queryBalance(userId: string) {
 	return await db
 		.selectFrom("economy")
 		.select("amount")
@@ -26,7 +26,7 @@ export namespace Economy {
 	export function of(userId: string) {
 		return {
 			addMoney: () => addMoney(userId),
-			queryAmount: () => queryAmount(userId),
+			queryBalance: () => queryBalance(userId),
 		};
 	}
 }

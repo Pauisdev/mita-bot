@@ -9,7 +9,7 @@ export default {
 	permissions: [],
 	run: async (interaction) => {
 		const economy = Economy.of(interaction.user.id);
-		const money = await economy.queryAmount();
+		const money = await economy.queryBalance();
 		interaction.reply({
 			content: `You currently have ${money} ${CARTRIDGE_EMOJI}`,
 			flags: MessageFlags.Ephemeral,
