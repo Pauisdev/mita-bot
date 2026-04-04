@@ -10,6 +10,7 @@ import {
 } from "discord.js";
 import { fetchCommands } from "../commands/handler";
 import { Log } from "../log";
+import { handleShopInteraction } from "./buttons/shop";
 
 const commands = await fetchCommands();
 
@@ -22,6 +23,10 @@ export default async (interaction: Interaction<CacheType>) => {
 async function handleButtonInteraction(
 	interaction: ButtonInteraction<CacheType>,
 ) {
+	if (interaction.customId.startsWith("shop")) {
+		await handleShopInteraction(interaction);
+		return;
+	}
 	if (interaction.customId === "close-ticket") {
 		await closeTicketButtonInteraction(interaction);
 		return;
