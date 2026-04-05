@@ -10,13 +10,13 @@ const trackedMessages = new Set<string>();
 
 export async function setupEasterEvent() {
 	Log.success("Easter event started!");
-	const FIVE_MINUTES = 5 * 60 * 1000;
+	const TWO_MINUTES = 2 * 60 * 1000;
 	const guild = await client.guilds.fetch(guildId());
-	setInterval(() => postEgg(guild), FIVE_MINUTES);
+	setInterval(() => postEgg(guild), TWO_MINUTES);
 }
 
 async function postEgg(guild: Guild) {
-	const MAX_EGGS_AMOUNT = 5;
+	const MAX_EGGS_AMOUNT = 3;
 	if (trackedMessages.size > MAX_EGGS_AMOUNT) return;
 	const PROHIBITED_CATEGORY = "1369447930905366620";
 	const channel = guild.channels.cache
