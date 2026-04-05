@@ -37,9 +37,11 @@ async function postEgg(guild: Guild) {
 	if (channel === undefined) return;
 	const filename = `Choco${images.next().value}.png`;
 	const imagePath = path.join("assets", filename);
+	Log.log(`Trying to post an egg in ${channel.id}...`);
 	const message = await channel.send({
 		files: [imagePath],
 	});
+	Log.log(`Posted an egg in ${channel.id}!`);
 	trackedMessages.add(message.id);
 }
 
