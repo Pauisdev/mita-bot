@@ -5,6 +5,7 @@ import { guildId } from "./environment";
 import { cycle } from "./utils";
 
 const images = cycle(["Cappie", "Kind", "Mila", "Mita", "Short"]);
+const trackedMessages = new Set<string>();
 
 export async function setupEasterEvent() {
 	const FIFTEEN_MINUTES = 15 * 60 * 1000;
@@ -12,14 +13,17 @@ export async function setupEasterEvent() {
 	setInterval(() => postEgg(guild), FIFTEEN_MINUTES);
 }
 
-function postEgg(guild: Guild) {
+async function postEgg(guild: Guild) {
+	const PROHIBITED_CATEGORY = "1369447930905366620";
 	const channel = guild.channels.cache
 		.filter((channel) => channel.isSendable())
+		.filter((channel) => channel.parentId !== PROHIBITED_CATEGORY)
 		.random();
 	if (channel === undefined) return;
 	const filename = `Choco${images.next().value}.png`;
 	const imagePath = path.join("assets", filename);
-	channel.send({
+	const message = await channel.send({
 		files: [imagePath],
 	});
+	trackedMessages.add(message.id);
 }
