@@ -10,9 +10,9 @@ const trackedMessages = new Set<string>();
 
 export async function setupEasterEvent() {
 	Log.success("Easter event started!");
-	const TWO_MINUTES = 2 * 60 * 1000;
+	const THIRTY_SECONDS = 0.5 * 60 * 1000;
 	const guild = await client.guilds.fetch(guildId());
-	setInterval(() => postEgg(guild), TWO_MINUTES);
+	setInterval(() => postEgg(guild), THIRTY_SECONDS);
 }
 
 async function postEgg(guild: Guild) {
