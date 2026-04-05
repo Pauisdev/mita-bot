@@ -1,5 +1,5 @@
 import path from "node:path";
-import type { Guild } from "discord.js";
+import { ChannelType, type Guild } from "discord.js";
 import { client } from "./client";
 import { guildId } from "./environment";
 import { Log } from "./log";
@@ -20,7 +20,7 @@ async function postEgg(guild: Guild) {
 	if (trackedMessages.size > MAX_EGGS_AMOUNT) return;
 	const PROHIBITED_CATEGORY = "1369447930905366620";
 	const channel = guild.channels.cache
-		.filter((channel) => channel.isSendable())
+		.filter((channel) => channel.type === ChannelType.GuildText)
 		.filter((channel) => channel.parentId !== PROHIBITED_CATEGORY)
 		.random();
 	if (channel === undefined) return;
