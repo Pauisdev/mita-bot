@@ -22,7 +22,8 @@ export default {
 				(top, i) =>
 					`${i}. **${top.user?.displayName}** with ${top.amount} eggs! :star: `,
 			)
-			.map((line) => `${line}\n`);
+			.map((line) => `${line}\n`)
+			.join("");
 		interaction.reply(
 			`# This is the leaderboard!\n${leaderboard}\n(*You currently have ${amount} eggs*)`,
 		);
