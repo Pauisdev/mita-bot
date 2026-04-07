@@ -20,6 +20,13 @@ export default async (reaction: MessageReaction, user: User) => {
 		const eggs = Eggs.of(user.id);
 		if (egg.type === "golden") {
 			eggs.addBy(10);
+		} else if (egg.type === "zombie") {
+			eggs.addBy(-10);
+			if (reaction.message.channel.isSendable()) {
+				reaction.message.channel.send(
+					`Oh no <@${user.id}>! You grabbed a poisoned egg by mistake, the rest of your eggs got rotten.\n-# You've lost 10 eggs.`,
+				);
+			}
 		} else {
 			eggs.add();
 		}

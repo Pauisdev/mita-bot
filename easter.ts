@@ -7,7 +7,7 @@ import { cycle } from "./utils";
 
 const images = cycle(["Cappie", "Kind", "Mila", "Mita", "Short"]);
 type TrackedMessage = {
-	type: "normal" | "golden";
+	type: "normal" | "golden" | "zombie";
 };
 const trackedMessages = new Map<string, TrackedMessage>();
 
@@ -42,6 +42,16 @@ async function postEgg(guild: Guild) {
 		})
 		.random();
 	if (channel === undefined) return;
+	if (Math.random() >= 0.95) {
+		const imagePath = path.join("assets", "ZombieMita.png");
+		Log.log(`Trying to post a ZOMBIE EGG in ${channel.id}...`);
+		const message = await channel.send({
+			files: [imagePath],
+		});
+		Log.log(`Posted ZOMBIE EGG in ${channel.id}!`);
+		trackedMessages.set(message.id, { type: "zombie" });
+		return;
+	}
 	if (Math.random() <= 0.05) {
 		const imagePath = path.join("assets", "GoldenCappie.png");
 		Log.log(`Trying to post a GOLDEN EGG in ${channel.id}...`);
