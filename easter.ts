@@ -31,12 +31,14 @@ async function postEgg(guild: Guild) {
 		"1402078845204697242",
 		"1385674060632952963",
 	];
+	const CARTRIDGE_CHANNEL = "1371879009918517400";
 	const channel = guild.channels.cache
 		.filter((channel) => channel.type === ChannelType.GuildText)
 		.filter(
 			(channel) =>
 				!channel.parentId || !PROHIBITED_CATEGORIES.includes(channel.parentId),
 		)
+		.filter((channel) => channel.id !== CARTRIDGE_CHANNEL)
 		.filter((channel) => {
 			const perms = channel.permissionsFor(guild.members.me!);
 			return (
