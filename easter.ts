@@ -19,7 +19,7 @@ export async function setupEasterEvent() {
 }
 
 async function postEgg(guild: Guild) {
-	const MAX_EGGS_AMOUNT = 3;
+	const MAX_EGGS_AMOUNT = 5;
 	if (
 		Array.from(trackedMessages.values()).filter((m) => m.type !== "zombie")
 			.length > MAX_EGGS_AMOUNT
