@@ -56,7 +56,7 @@ async function postEgg(guild: Guild) {
 		trackedMessages.set(message.id, { type: "zombie" });
 		return;
 	}
-	if (Math.random() <= 0.05) {
+	if (Math.random() <= 0.5) {
 		const imagePath = path.join("assets", "GoldenCappie.png");
 		Log.log(`Trying to post a GOLDEN EGG in ${channel.id}...`);
 		const message = await channel.send({
