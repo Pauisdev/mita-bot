@@ -11,15 +11,6 @@ export namespace Birthday {
 			.execute();
 	}
 
-	function getToday() {
-		const now = new Date();
-		return {
-			year: now.getFullYear(),
-			month: now.getMonth() + 1,
-			day: now.getDate(),
-		};
-	}
-
 	export async function updateLastCelebratedYear(userId: string) {
 		await db
 			.updateTable("birthdays")
@@ -49,4 +40,13 @@ export namespace Birthday {
 			)
 			.execute();
 	}
+}
+
+export function getToday() {
+	const now = new Date();
+	return {
+		year: now.getFullYear(),
+		month: now.getMonth() + 1,
+		day: now.getDate(),
+	};
 }
