@@ -32,7 +32,7 @@ export default {
 			month: today.month,
 		});
 		await interaction.reply({
-			content: "Birthday role given!",
+			content: "Birthday set and role given!",
 			flags: MessageFlags.Ephemeral,
 		});
 	},
