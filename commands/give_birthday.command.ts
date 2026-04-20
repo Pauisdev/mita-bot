@@ -4,6 +4,7 @@ import {
 	PermissionFlagsBits,
 } from "discord.js";
 import { BIRTHDAY_ROLE_ID } from "../consts";
+import { Birthday, getToday } from "../database/birthday";
 import type { Command } from "./types";
 
 export default {
@@ -23,7 +24,13 @@ export default {
 		const member = await interaction.guild.members.fetch(user.id);
 
 		await member.roles.add(BIRTHDAY_ROLE_ID);
-
+		const today = getToday();
+		await Birthday.setBirthday({
+			guildId: interaction.guild.id,
+			userId: interaction.user.id,
+			day: today.day,
+			month: today.month,
+		});
 		await interaction.reply({
 			content: "Birthday role given!",
 			flags: MessageFlags.Ephemeral,
