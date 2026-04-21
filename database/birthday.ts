@@ -39,6 +39,10 @@ export namespace Birthday {
 			)
 			.execute();
 	}
+
+	export async function remove(userId: string) {
+		await db.deleteFrom("birthdays").where("user_id", "=", userId).execute();
+	}
 }
 
 export function getToday() {
