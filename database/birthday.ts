@@ -22,7 +22,6 @@ export namespace Birthday {
 	export async function setBirthday(data: {
 		day: number;
 		month: number;
-		guildId: string;
 		userId: string;
 	}) {
 		await db
@@ -39,6 +38,10 @@ export namespace Birthday {
 				}),
 			)
 			.execute();
+	}
+
+	export async function remove(userId: string) {
+		await db.deleteFrom("birthdays").where("user_id", "=", userId).execute();
 	}
 }
 

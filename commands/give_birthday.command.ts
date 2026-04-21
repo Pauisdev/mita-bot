@@ -26,8 +26,7 @@ export default {
 		await member.roles.add(BIRTHDAY_ROLE_ID);
 		const today = getToday();
 		await Birthday.setBirthday({
-			guildId: interaction.guild.id,
-			userId: interaction.user.id,
+			userId: user.id,
 			day: today.day,
 			month: today.month,
 		});
