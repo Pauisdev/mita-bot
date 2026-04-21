@@ -22,7 +22,6 @@ export namespace Birthday {
 	export async function setBirthday(data: {
 		day: number;
 		month: number;
-		guildId: string;
 		userId: string;
 	}) {
 		await db

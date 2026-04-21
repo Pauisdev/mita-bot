@@ -31,7 +31,6 @@ export default {
 			return;
 		}
 		await Birthday.setBirthday({
-			guildId: interaction.guild.id,
 			userId: interaction.user.id,
 			day,
 			month,
