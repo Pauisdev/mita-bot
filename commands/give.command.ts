@@ -3,6 +3,7 @@ import {
 	MessageFlags,
 	PermissionFlagsBits,
 } from "discord.js";
+import { BIRTHDAY_ROLE_ID } from "../consts";
 import { TempRoles } from "../database/tempRoles";
 import { parseDuration } from "../utils";
 import type { Command } from "./types";
@@ -34,6 +35,15 @@ export default {
 		const user = interaction.options.getUser("user", true);
 		const role = interaction.options.getRole("role", true);
 		const duration = interaction.options.getString("duration");
+
+		if (role.id === BIRTHDAY_ROLE_ID) {
+			await interaction.reply({
+				content:
+					"Please use the `/give_birthday` command to give out the birthday role.",
+				flags: [MessageFlags.Ephemeral],
+			});
+			return;
+		}
 
 		if (role.id === interaction.guild.id) {
 			await interaction.reply({
